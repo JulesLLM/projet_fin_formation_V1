@@ -1,0 +1,44 @@
+<div class="m-t">
+  <article class="box">
+    <h1 id="titre_article"><?php echo $data['article']->getTitre();?></h1>
+    <div id="contenu_article"><?php echo $data['article']->getContenu();?></div>
+    <div class="date">
+      <p id="d_p_a">Date de publication</p>
+      <?php echo $data['article']->getDate_publication();?>
+    </div>
+    <div>
+      <p id="e_p">Ecrit par</p>
+      <?php echo $data['article']->getPraticien()->getNom();?>
+      <?php echo $data['article']->getPraticien()->getPrenom();?>
+    </div>
+<!-- BOUTON COMMENTER-->
+    <?php if (isset($_SESSION['id']) || isset($_SESSION['praticien'])) { ?>    
+      <button id="commenter-btn">Commenter</button>
+    <?php } ?>
+    <dialog id="commenter-modal">
+      <!-- Contenu du formulaire de commentaire -->
+      <?php include 'commentaire_form.phtml'; ?>
+      <button id="close-modal-btn">Fermer</button>
+    </dialog>
+  </article>
+</div>
+<!-- COMMENTAIRES-->
+  <?php 
+    foreach ($data['commentaires'] as $comments) {
+  ?>
+  <div class="m-t">
+    <div class="box">    
+      <div id="contenu_commentaire"><?php echo $comments->commentaire->getContenu(); ?></div> 
+      <div class="date">
+        <p id="d_p_c">Date de commentaire</p>
+        <?php echo $comments->commentaire->getDate_publication(); ?>
+      </div> 
+      <div> 
+        <p id="commentateur">Ecrit par</p>
+        <?php echo $comments->commentaire->getPatient()->getNom(); ?> 
+        <?php echo $comments->commentaire->getPatient()->getPrenom(); ?> 
+      </div>
+    </div>            
+  <?php } ?>
+ 
+</div> 

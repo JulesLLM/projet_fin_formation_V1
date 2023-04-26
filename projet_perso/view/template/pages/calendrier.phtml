@@ -1,0 +1,78 @@
+<?php
+use App\Class\Agenda;
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendrier interactif</title>
+</head>
+<body>
+    <h1>Calendrier interactif</h1>
+    <dialog id="myModal" class="modal">
+      <div id="contenu-modal">
+      <!-- Contenu de la modale -->
+      <?php include 'rendezvous_form.phtml'; ?>
+      <button id="close-modal-btn">Fermer</button>
+     </div>
+ </dialog>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Jour</th>
+                <th>Créneaux horaires</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Récupérer l'année et le mois actuel
+            $annee = date('Y');
+            $mois = date('n');
+            // Créer un nouvel agenda pour le mois et l'année en cours
+            $agenda = new Agenda($mois, $annee);
+            // Récupérer les jours de l'agenda pour le mois et l'année en cours
+            $jours = $agenda->getJours();
+
+            // Parcourir les jours de l'agenda
+            foreach ($jours as $jour) {
+                // Récupérer la date du jour et la formater en une chaîne de caractères
+                //$date_str = $jour->getDate()->format('l j F');
+                $date_str = $jour->getDateString();
+                // Récupérer les créneaux du jour
+                $creneaux = $jour->getCreneaux();
+                // Initialiser la variable pour stocker le code HTML des créneaux du jour
+                $creneaux_html = '';
+
+                // Parcourir les créneaux du jour
+                foreach ($creneaux as $creneau) {
+                    // Récupérer l'heure de début et de fin du créneau
+                    $heure_debut = $creneau->getHeureDebut();
+                    $heure_fin = $creneau->getHeureFin();
+                    // Vérifier si le créneau est disponible
+                    if (!$creneau->estDisponible()) {
+                        // Si le créneau n'est pas disponible, passer à l'heure suivante
+                        continue;
+                    }
+                    // Générer le code HTML pour le créneau
+                    $creneau_html = "<td class='creneau-selectionnable' data-jour='" . $date_str . "' data-heure-debut='" . $heure_debut . "' data-heure-fin='" . $heure_fin . "'><a href='#'>$heure_debut - $heure_fin</a></td>";
+                    // Ajouter le code HTML du créneau à la variable de stockage des créneaux du jour
+                    $creneaux_html .= $creneau_html;
+                }
+                // Vérifier si aucun créneau n'a été généré pour le jour en question
+                if (empty($creneaux_html)) {
+                    // Si aucun créneau n'est disponible, passer au jour suivant
+                    continue;
+                }
+                // Générer le code HTML pour la ligne du jour, en incluant la date et les créneaux
+                echo "<tr><td>$date_str</td>$creneaux_html</tr>";
+            }
+            ?>
+            
+        </tbody>
+    </table>
+    <button id="open-modal-btn" style="display:none;">Ouvrir la modale</button>
+</body>
+
+
+</html>

@@ -1,0 +1,24 @@
+<div class="m-t">
+    <?php foreach ($data['articles'] as $article) { ?>
+        <article class="box box_articles">
+            <h2>
+                <a class="titre_article" href="article?id=<?= $article->getId() ?>">
+                    <?php echo $article->getTitre();?>
+                </a>
+            </h2>
+            <div class="image_resume">
+                <img class="image_article" src="<?php echo $article->getImage(); ?>" alt="<?php echo $article->getTitre(); ?>">
+                <div class= "resume_article">
+                    <p><?php echo $article->getResume(); ?></p>
+                </div>
+            </div>
+            <div class= "date_publication_article">
+                Date de publication : <?php echo $article->getDate_publication();?>
+            </div>
+            <div class= "auteur">
+                Ecrit par : <?php echo $article->getPraticien()->getNom();?> 
+                <?php echo $article->getPraticien()->getPrenom();?> 
+            </div>
+        </article>
+    <?php } ?>
+</div>

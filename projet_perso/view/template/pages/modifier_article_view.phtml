@@ -1,0 +1,10 @@
+<div class="box" id="box_modif_commentaire">
+    <form method="POST" action="modifier_commentaire?id=<?php echo $data['commentaires']->getId(); ?>" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?php echo $data['commentaires']->getId(); ?>">
+
+        <label> Changer Contenu </label>
+        <input type="text" name="contenu_commentaire" />
+        <p><?php echo $data['commentaires']->getContenu();?></p>
+        <button type="submit" name="new_contenu">Envoyer</button>
+    </form>
+</div>

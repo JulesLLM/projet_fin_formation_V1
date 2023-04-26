@@ -1,0 +1,12 @@
+<div class="m-t">
+    <?php 
+    foreach ($data['prestations'] as $prestations) {
+    ?>
+        <section class = "box">
+            <h2 class = "nom_prestation"> <?php echo $prestations->prestation->getNom_prestation(); ?> </h2> 
+            <div class = "description"> <h4>Description </h4> <span><?php echo $prestations->prestation->getDefinition(); ?></span></div> 
+            <div class = "duree"> <h4>Durée </h4> <span ><?php echo $prestations->prestation->getDuree(); ?> heure</span></div>
+            <div class = "prix"> <h4>Prix </h4> <span ><?php echo $prestations->prestation->getCout(); ?> euros </span></div>
+        </section>
+    <?php } ?>
+</div>

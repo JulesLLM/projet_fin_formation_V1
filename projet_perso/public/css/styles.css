@@ -1,0 +1,588 @@
+@charset "UTF-8";
+/*****************************************
+    VARIABLES CSS 
+*****************************************/
+:root {
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-title: "Libre Baskerville", serif;
+  --body-font-size: 0.8rem;
+  --color-principale: #7a9e1e;
+  --color-secondaire: #EDD207;
+  --footer-font-size: 0.6rem;
+}
+
+/*****************************************
+  COMMUNES
+*****************************************/
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+h1, h2 {
+  color: rgb(122, 158, 30);
+}
+
+h4 {
+  margin: 0;
+  font-family: var(--font-title);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.style-text {
+  margin-left: 1%;
+}
+
+ul {
+  padding: 0;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.9px);
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+a:link {
+  color: inherit; /* Utilise la couleur héritée pour les liens non visités */
+}
+
+a:visited {
+  color: inherit; /* Utilise la couleur héritée pour les liens visités */
+}
+
+.m-t {
+  margin-top: 1rem;
+}
+
+/*****************************************
+  MODE YIN  
+*****************************************/
+/*****************************************
+  MODE YANG
+*****************************************/
+/*****************************************
+  NAVBAR 
+*****************************************/
+nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font);
+  border-bottom: 2px solid #002147;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+/* Hamburger menu */
+#hamburger-menu {
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+#hamburger rect {
+  fill: #333;
+  height: 5px;
+  margin-bottom: 5px;
+}
+
+/* Menu principal */
+#menu li {
+  position: relative;
+}
+
+#menu a {
+  display: block;
+  text-decoration: none;
+  color: var(--color-principale);
+}
+
+/* Menu déroulant */
+#sub-menu ul {
+  list-style-type: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 100%;
+  left: 0;
+  display: none;
+  z-index: 1;
+}
+
+#sub-menu:hover ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+#sub-menu:hover > a {
+  background-color: #eee;
+}
+
+#sub-menu ul li a {
+  padding: 0.5em 1em;
+  background-color: #f9f9f9;
+}
+
+#sub-menu ul li a:hover {
+  background-color: #ddd;
+}
+
+a#reservation {
+  display: none;
+}
+
+#entreprise {
+  display: grid;
+  grid-template-areas: "img img n_e_1 n_e_1" "img img n_e_2 n_e_2" "img img n_e_3 n_e_3";
+  grid-template-columns: 4rem 1fr 1fr; /* la première colonne est réservée à l'image */
+  grid-gap: 1rem;
+  align-items: center;
+}
+
+#logo-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  grid-area: img; /* utilisez la même zone que dans grid-template-areas */
+}
+
+#img_entreprise {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 4rem;
+  grid-column: 2/4; /* le texte commence dans la deuxième colonne */
+  grid-row: 1/4; /* et s'étend sur trois rangées */
+}
+
+#n_e_1,
+#n_e_2,
+#n_e_3 {
+  font-size: 1rem;
+  color: var(--color-principale);
+  font-weight: bold;
+}
+
+svg {
+  cursor: pointer;
+}
+
+/* Menu déroulant Login*/
+.fa-regular fa-user {
+  width: 3rem;
+  height: 3rem;
+}
+
+#sub-menu2 {
+  padding-right: 16px;
+}
+
+#sub-menu2 div {
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+#sub-menu2:hover div {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+#sub-menu2:hover > a {
+  background-color: #eee;
+}
+
+#sub-menu2 div a {
+  padding: 0.5em 1em;
+  background-color: #f9f9f9;
+  color: var(--color-principale);
+}
+
+#sub-menu2 div a:hover {
+  background-color: #ddd;
+}
+
+#yin-yang {
+  transition: transform 0.5s;
+}
+
+.rotate {
+  transform: rotate(360deg);
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/*****************************************
+  FORMS
+*****************************************/
+#box_login,
+#box_inscription,
+#box_log_praticien,
+#box_rdv,
+#box_article,
+#box_modif_article,
+#box_prestation {
+  border: 1px solid var(--color-principale);
+  margin-top: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type=email],
+input[type=text],
+input[type=datetime-local],
+input[type=password] {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #E8F0FE;
+}
+
+input[type=submit], button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--color-principale);
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type=submit]:hover, button:hover {
+  background-color: var(--color-secondaire);
+}
+
+/*****************************************
+  BODY_ACCEUIL 
+*****************************************/
+#section_accueil {
+  margin-top: 1rem;
+}
+
+#carousel-container {
+  height: 10em;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.carousel {
+  border: 1px solid gray;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#box_accueil {
+  margin-top: 1rem;
+}
+
+/*****************************************
+  BODY_PRESTATIONS 
+*****************************************/
+.description,
+.duree,
+.prix {
+  font-family: var(--font);
+}
+
+.nom_prestation {
+  font-family: var(--font-title);
+}
+
+.description,
+.duree,
+.prix {
+  margin: 1% 0;
+}
+
+/*****************************************
+  BODY_ARTICLES 
+*****************************************/
+.box_articles {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "titre titre" "image_resume image_resume" "date auteur";
+  gap: 10px;
+  align-items: start;
+}
+
+/*CSS multiples*/
+.titre_article,
+.date_publication_article,
+.auteur {
+  font-family: var(--font-title);
+}
+
+.resume_article,
+.date_publication_article,
+.auteur {
+  font-size: var(--body-font-size);
+}
+
+/*CSS Unique*/
+.titre_article {
+  grid-area: titre;
+}
+
+.image_article {
+  height: 10rem;
+  width: 10rem;
+  float: left;
+  margin-right: 20px; /* ajoute un espace entre l'image et le texte */
+  shape-outside: circle(50%);
+}
+
+.image_resume {
+  grid-area: image_resume;
+}
+
+.resume_article {
+  font-family: var(--font);
+  margin-top: 0;
+}
+
+.date_publication_article,
+.date_publication_commentaire {
+  grid-area: date;
+}
+
+.auteur {
+  grid-area: auteur;
+}
+
+/*****************************************
+  BODY_ARTICLE 
+*****************************************/
+#e_p,
+#d_p_a,
+#d_p_c,
+#commentateur {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.date {
+  margin: 0.5rem 0;
+}
+
+/*****************************************
+  BODY_AGENDA 
+*****************************************/
+/* Style pour la table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font);
+}
+
+/* Style pour l'en-tête de la table */
+th {
+  background-color: #4285f4;
+  color: #fff;
+  font-weight: normal;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Style pour les cellules du corps de la table */
+td {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Style pour les cellules contenant un créneau sélectionnable */
+.creneau-selectionnable {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+/* Style pour les cellules contenant un créneau sélectionné */
+.creneau-selectionne {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+/* Style pour les liens dans les cellules contenant un créneau */
+.creneau-selectionnable a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+/* Style pour les liens dans les cellules contenant un créneau sélectionné */
+.creneau-selectionne a {
+  color: #fff;
+}
+
+/* Style pour les cellules contenant un créneau non disponible */
+.creneau-non-disponible {
+  background-color: #e0e0e0;
+  color: #aaa;
+}
+
+/*MODAL*/
+/* Styles pour la modale */
+.modal {
+  /*display: none;*/
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/*****************************************
+  FOOTER 
+*****************************************/
+footer {
+  border-top: 2px solid #002147;
+  font-family: var(--font);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "header1 header2" "main1 main2" "header3 header3" "main3 main3" "footer footer";
+}
+
+h5,
+div,
+p,
+hr,
+#contact_user,
+#contact_phone {
+  margin: 0;
+}
+
+#contact,
+#reglement,
+#disclaimer {
+  font-family: var(--font-title);
+  color: var(--color-principale);
+}
+
+#contact {
+  grid-area: header1;
+  margin: 1rem 0;
+}
+
+#contact #icons {
+  grid-area: main1;
+}
+
+#contact_mail {
+  margin-bottom: 2%;
+}
+
+#reglement {
+  grid-area: header2;
+  margin-top: 1rem;
+}
+
+#reglement #cnil {
+  grid-area: main2;
+}
+
+#disclaimer {
+  grid-area: header3;
+  margin-bottom: 1rem;
+}
+
+#disclaimer ~ p {
+  grid-area: main3;
+  margin-bottom: 1%;
+}
+
+#sub-hr {
+  grid-area: footer;
+}
+
+footer p,
+footer a,
+i,
+footer span {
+  font-style: italic;
+  font-size: var(--footer-font-size);
+}
+
+hr {
+  border-top-color: #bbb;
+  opacity: 0.5;
+}
+
+hr.small {
+  margin: 20px 0;
+}
+
+/*****************************************
+  MEDIA QUERY
+*****************************************/
+@media only screen and (min-width: 768px) {
+  #hamburger-menu {
+    display: none;
+  }
+  #menu a {
+    background-color: #FFFFFF;
+  }
+  #sub-menu:hover ul, #menu:hover li, #sub-menu li:hover {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+  }
+  #sub-menu ul {
+    list-style-type: none;
+    position: static;
+    display: flex;
+  }
+  #sub-menu ul li a {
+    background-color: #FFFFFF;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

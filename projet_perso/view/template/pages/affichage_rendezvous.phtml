@@ -1,0 +1,15 @@
+<h1>Liste des rendez-vous</h1>
+
+<ul>
+    <?php 
+    foreach ($data['rdvs'] as $rendezvous) {
+        $dateheure = new DateTime($rendezvous->getDatetimes());
+    ?>
+        <li>
+            <div id="date">Date : <?php echo $dateheure->format('d/m/Y'); ?></div>
+            <div id="heure">Heure : <?php echo $dateheure->format('H:i:s'); ?></div>
+            <div id="patient">Patient : <?php echo $rendezvous->patient->getNom() . ' ' . $rendezvous->patient->getPrenom(); ?></div>
+            <div id = "prestation">Prestation : <?php echo $rendezvous->prestation->getNom_prestation(); ?> <?php echo $rendezvous->prestation->getDefinition(); ?></div>
+        </li>
+    <?php } ?>
+</ul>

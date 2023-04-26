@@ -1,0 +1,20 @@
+<div class="box" id="box_rdv">
+  <form method="POST">
+    <input type="datetime-local" name="datetimes"/>
+    <label for="lieu-select">Choisir un lieu:</label>
+    <select name="lieu" id="lieu">
+      <option value="">--Choisissez une des deux options--</option>
+      <option value="cabinet">Cabinet</option>
+      <option value="domicile">A domicile</option>
+    </select>
+    <select name="prestations" id="prestations">
+      <option value="">--Choisissez une des prestations--</option>
+      <?php foreach ($data['prestations'] as $prestation) {
+        echo "<option value='" . $prestation->getId() . "'>" . $prestation->getNom_prestation() . "</option>";
+      }?>
+    </select>
+    <input type="text" name="antecedents_medicaux" placeholder="Tapez ici vos antécédents medicaux" />
+    <input type="text" name="commentaires" placeholder="Tapez ici vos commentaires" />
+    <input type="submit" name="poster" />
+  </form>
+</div> 

@@ -1,0 +1,35 @@
+<h2>Mon compte</h2>
+
+<form method="POST" id="formulaire_compte" action="form_account" enctype="multipart/form-data">
+    <label>Changer le nom </label><input type="text" name="nom" placeholder="votre nouveau nom"/>
+    <p>Nom : <?php echo $data['user']->getNom(); ?></p>
+    <button type="submit" name="new_nom">Send</button>
+    
+    <label>Changer le prénom </label><input type="text" name="prenom" placeholder="votre nouveau prénom"/>
+    <p>Prénom : <?php echo $data['user']->getPrenom(); ?></p>
+    <button type="submit" name="new_prenom">Send</button>
+    
+    <label>Changer la date de naissance </label><input type="text" name="date_naissance" placeholder="votre nouvelle date de naissance"/>
+    <p>Date de naissance : <?php echo $data['user']->getDate_naissance(); ?></p>
+    <button type="submit" name="new_date_naissance">Send</button>
+    
+    <label>Changer le mail </label><input type="mail" name="email" placeholder="votre nouvelle mail"/>
+    <p>Mail : <?php echo $data['user']->getEmail(); ?></p>
+    <button type="submit" name="new_email">Send</button>
+    
+    <label>Changer le mot de passe </label><input type="password" name="password"/>
+    <button type="submit" name="new_email">Send</button>
+    
+    <label>Changer le téléphone </label><input type="text" name="telephone" placeholder="votre nouveau numéro de téléphone"/>
+    <p>Téléphone : <?php echo $data['user']->getTelephone(); ?></p>
+    <button type="submit" name="new_telephone">Send</button>
+    
+    <label>Changer l'adresse </label><input type="text" name="adresse" placeholder="votre nouvelle adresse"/>
+    <p>Adresse : <?php echo $data['user']->getAdresse(); ?></p>
+    <button type="submit" name="new_adresse">Send</button>
+    
+</form>
+<form method="POST" id="formulaire_compte" action="suppr_account">
+    <label>Supprimer son compte</label>
+    <button type="submit" name="delete_account">Supprimer</button>
+</form>
